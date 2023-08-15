@@ -21,7 +21,8 @@ function renderProducts(array,parent){
             <p class="card-text">${element.description}</p>
             <p class="card-text">${element.category}</p>
             <p class="card-text">$${element.price}</p>
-            <p class="card-text">Rating: ${element.rating.rate}</p>        
+            <p class="card-text">Rating: ${element.rating.rate}</p>     
+            <p class="card-text">Category: ${element.category}</p>    
             <button data-id="${element.id}"  data-bs-toggle="modal" data-bs-target="#exampleModal"  class="btn btn-primary edit-btn">Edit</button>
             <button class="btn btn-danger" data-id="${element.id}">Delete </button>
         </div>
@@ -42,6 +43,7 @@ elCards.addEventListener("click",(evt) => {
         const elInputTitle = findElement("#input-title");
         const elInputImage = findElement("#input-image");
         const elInputPrice = findElement("#input-price");
+        const elInputCategory = findElement("#input-category");
         const elUpdateImage = findElement("#update-img");
         const elUpdateBtn = findElement("#update-btn");
         
@@ -51,13 +53,15 @@ elCards.addEventListener("click",(evt) => {
             elInputTitle.value = product.title;
             elInputImage.value = product.image;
             elInputPrice.value = product.price;
-            elUpdateImage.src = product.image
+            elInputCategory.value = product.category;
+            elUpdateImage.src = product.image;
             
             elUpdateBtn.addEventListener("click", ()=> {
-                
+                console.log(elInputCategory.value)
                 product.title = elInputTitle.value;
                 product.image = elInputImage.value;
                 product.price = elInputPrice.value;
+                product.category = elInputCategory.value;
                 renderProducts(products,elCards)
 
             
